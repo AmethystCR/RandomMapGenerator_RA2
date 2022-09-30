@@ -762,6 +762,23 @@ namespace RandomMapGenerator
             Log.Information("Image is saved as " + outputName + ".png");
             Log.Information("******************************************************");
         }
+		
+		public void RenderMapModified(string path)
+        {
+            path = Program.ProgramFolder + "\\" + path;
+            Log.Information("******************************************************");
+            Log.Information("Rendering Map...");
+            Process MapRenderer = new Process();
+            var outputName = path.Split('\\').Last().Split('.')[0];
+            MapRenderer.StartInfo.FileName = Program.RenderderPath;
+            MapRenderer.StartInfo.UseShellExecute = false;
+            MapRenderer.StartInfo.CreateNoWindow = true;
+            MapRenderer.StartInfo.Arguments = $@"-i ""{path}"" -o ""{outputName}"" -m ""{Program.GameFolder.Trim('\\')}"" -r --mark-start-pos -s=4  -z +(1600,800) --thumb-png"; //--preview-markers-selected
+            MapRenderer.Start();
+            while (!MapRenderer.HasExited) { }
+            Log.Information("Image is saved as " + outputName + ".png");
+            Log.Information("******************************************************");
+        }
 
         public void GeneratePreview(string path)
         {

@@ -58,6 +58,9 @@ namespace RandomMapGenerator
 
         [Option("no-thumbnail", Default = false ,Required = false, HelpText = "不渲染地图全图")]
         public bool NoThumbnail { get; set; }
+		
+		[Option("renderfullmap", Default = false ,Required = false, HelpText = "渲染高清预览图")]
+        public bool RenderFullMap { get; set; }
 
         //[Option("no-thumbnail-output", Default = false, Required = false, HelpText = "不输出地图全图，但是会生成载入缩略图")]
         //public bool NoThumbnailOutput { get; set; }
@@ -399,6 +402,9 @@ namespace RandomMapGenerator
 
                 if (!option.NoThumbnail)
                     mapFile.RenderMap(fullPath);
+				
+				if (option.RenderFullMap)
+                    mapFile.RenderMapModified(fullPath);
 
 
                 
