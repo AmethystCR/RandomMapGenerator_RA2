@@ -773,7 +773,7 @@ namespace RandomMapGenerator
             MapRenderer.StartInfo.FileName = Program.RenderderPath;
             MapRenderer.StartInfo.UseShellExecute = false;
             MapRenderer.StartInfo.CreateNoWindow = true;
-            MapRenderer.StartInfo.Arguments = $@"-i ""{path}"" -o ""{outputName}"" -m ""{Program.GameFolder.Trim('\\')}"" -r --mark-start-pos -s=4  -z +(1280,800) --thumb-png"; //--preview-markers-selected
+            MapRenderer.StartInfo.Arguments = $@"-i ""{path}"" -o ""{outputName}"" -m ""{Program.GameFolder.Trim('\\')}"" -r -Y -z +(1280,800) --thumb-png"; //--preview-markers-selected
             MapRenderer.Start();
             while (!MapRenderer.HasExited) { }
             Log.Information("Image is saved as " + outputName + ".png");
